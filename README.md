@@ -2,7 +2,27 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
-Usage:
+## Usage:
+
+`npm install angular-table-grid`
+
+``` typescript
+import {TableGridModule} from 'table-grid';
+
+@NgModule({
+  declarations: [...],
+  imports: [
+    ...
+    TableGridModule,
+    ...
+  ],
+  providers: [],
+  entryComponents: [...],
+  bootstrap: [...]
+})
+export class AppModule { }
+
+```
 
 `<lib-table-grid [gridOptions]="gridOptions"></lib-table-grid>`
 
