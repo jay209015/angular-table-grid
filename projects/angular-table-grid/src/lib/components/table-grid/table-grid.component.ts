@@ -39,6 +39,13 @@ export class TableGridComponent implements OnInit {
 
   private getRowData() {
     this.gridOptions.getRowData(this.rowDataRequest).subscribe((rowData) => {
+      if (rowDataRequest.pagination.perPage && rowData.rows.length > rowDataRequest.pagination.perPage) {
+        const page = rowDataRequest.pagination.page;
+        const perPage = rowDataRequest.pagination.perPage;
+        const start = (page - 1) * perPage;
+        const end = page * perPage;
+        rowData.rows = rowData.rows.slice(start, end);
+      }
       this.rowData = rowData.rows;
       this.rowDataRequest.pagination.totalRows = rowData.totalRows;
     });
