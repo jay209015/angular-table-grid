@@ -1,4 +1,4 @@
-import {Component, ComponentFactoryResolver, Input, OnInit, ViewContainerRef} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {TableGridOptions} from '../../interfaces/table-grid-options';
 import {TableGridRowDataRequest} from '../../interfaces/table-grid-row-data-request';
 import {HttpParams} from '@angular/common/http';
@@ -13,9 +13,7 @@ export class TableGridComponent implements OnInit {
   public rowData: any[] = [];
   public rowDataRequest: TableGridRowDataRequest;
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver,
-              private viewContainerRef: ViewContainerRef) {
-  }
+  constructor() {}
 
   ngOnInit() {
     this.rowDataRequest = <TableGridRowDataRequest>{
@@ -39,9 +37,9 @@ export class TableGridComponent implements OnInit {
 
   private getRowData() {
     this.gridOptions.getRowData(this.rowDataRequest).subscribe((rowData) => {
-      if (rowDataRequest.pagination.perPage && rowData.rows.length > rowDataRequest.pagination.perPage) {
-        const page = rowDataRequest.pagination.page;
-        const perPage = rowDataRequest.pagination.perPage;
+      if (this.rowDataRequest.pagination.perPage && rowData.rows.length > this.rowDataRequest.pagination.perPage) {
+        const page = this.rowDataRequest.pagination.page;
+        const perPage = this.rowDataRequest.pagination.perPage;
         const start = (page - 1) * perPage;
         const end = page * perPage;
         rowData.rows = rowData.rows.slice(start, end);
