@@ -1,13 +1,14 @@
 {
   "name": "angular-table-grid",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "peerDependencies": {
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
     "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
   },
   "scripts": {
-    "build_lib": "ng build --prod table-grid",
-    "npm_pack": "cd ../../dist/table-grid && npm pack",
+    "build_lib": "ng build --prod angular-table-grid",
+    "npm_pack": "cd ../../dist/angular-table-grid && npm pack",
     "package": "npm run build_lib && npm run npm_pack"
-  }
+  },
+  "repository": "https://github.com/jay209015/angular-table-grid/"
 }

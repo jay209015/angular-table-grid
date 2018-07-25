@@ -24,5 +24,5 @@ import {TableGridPaginationComponent} from './components/table-grid-pagination/t
   ],
   entryComponents: [TableGridDetailsComponent]
 })
-export class TableGridModule {
+export class AngularTableGridModule {
 }

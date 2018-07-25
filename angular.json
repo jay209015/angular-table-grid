@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "kitchen-sink": {
+    "angular-angular-table-grid-example": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/kitchen-sink",
+            "outputPath": "dist/angular-angular-table-grid-example",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -50,18 +50,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "kitchen-sink:build"
+            "browserTarget": "angular-angular-table-grid-example:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "kitchen-sink:build:production"
+              "browserTarget": "angular-angular-table-grid-example:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "kitchen-sink:build"
+            "browserTarget": "angular-angular-table-grid-example:build"
           }
         },
         "test": {
@@ -95,7 +95,7 @@
         }
       }
     },
-    "kitchen-sink-e2e": {
+    "angular-angular-table-grid-example-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -103,11 +103,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "kitchen-sink:serve"
+            "devServerTarget": "angular-angular-table-grid-example:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "kitchen-sink:serve:production"
+              "devServerTarget": "angular-angular-table-grid-example:serve:production"
             }
           }
         },
@@ -122,38 +122,38 @@
         }
       }
     },
-    "table-grid": {
-      "root": "projects/table-grid",
-      "sourceRoot": "projects/table-grid/src",
+    "angular-table-grid": {
+      "root": "projects/angular-table-grid",
+      "sourceRoot": "projects/angular-table-grid/src",
       "projectType": "library",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/table-grid/tsconfig.lib.json",
-            "project": "projects/table-grid/ng-package.json"
+            "tsConfig": "projects/angular-table-grid/tsconfig.lib.json",
+            "project": "projects/angular-table-grid/ng-package.json"
           },
           "configurations": {
             "production": {
-              "project": "projects/table-grid/ng-package.prod.json"
+              "project": "projects/angular-table-grid/ng-package.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/table-grid/src/test.ts",
-            "tsConfig": "projects/table-grid/tsconfig.spec.json",
-            "karmaConfig": "projects/table-grid/karma.conf.js"
+            "main": "projects/angular-table-grid/src/test.ts",
+            "tsConfig": "projects/angular-table-grid/tsconfig.spec.json",
+            "karmaConfig": "projects/angular-table-grid/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/table-grid/tsconfig.lib.json",
-              "projects/table-grid/tsconfig.spec.json"
+              "projects/angular-table-grid/tsconfig.lib.json",
+              "projects/angular-table-grid/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -163,5 +163,5 @@
       }
     }
   },
-  "defaultProject": "kitchen-sink"
+  "defaultProject": "angular-angular-table-grid-example"
 }

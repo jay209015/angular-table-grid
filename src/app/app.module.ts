@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { TestComponent } from './test/test.component';
 import {HttpClientModule} from '@angular/common/http';
-import {TableGridModule} from 'table-grid';
+import {AngularTableGridModule} from 'angular-table-grid';
 
 @NgModule({
   declarations: [
@@ -12,7 +12,7 @@ import {TableGridModule} from 'table-grid';
   ],
   imports: [
     BrowserModule,
-    TableGridModule,
+    AngularTableGridModule,
     HttpClientModule
   ],
   providers: [],

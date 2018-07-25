@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/table-grid",
+  "dest": "../../dist/angular-table-grid",
   "lib": {
     "entryFile": "src/public_api.ts"
   }

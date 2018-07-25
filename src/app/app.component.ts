@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {TableGridOptions} from 'table-grid';
-import {TableGridRowDataResponse} from 'table-grid';
-import {TableGridRowDataRequest} from 'table-grid';
+import {TableGridOptions} from 'angular-table-grid';
+import {TableGridRowDataResponse} from 'angular-table-grid';
+import {TableGridRowDataRequest} from 'angular-table-grid';
 import {map} from 'rxjs/internal/operators';
 
 @Component({

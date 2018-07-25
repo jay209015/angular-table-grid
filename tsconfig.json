@@ -17,11 +17,11 @@
       "dom"
     ],
     "paths": {
-      "table-grid": [
-        "dist/table-grid"
+      "angular-table-grid": [
+        "dist/angular-table-grid"
       ],
-      "table-grid/*": [
-        "dist/table-grid/*"
+      "angular-table-grid/*": [
+        "dist/angular-table-grid/*"
       ]
     }
   }

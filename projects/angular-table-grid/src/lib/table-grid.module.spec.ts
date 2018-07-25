@@ -1,10 +1,10 @@
-import { TableGridModule } from './table-grid.module';
+import { AngularTableGridModule } from './angular-table-grid.module';
 
 describe('TableGridModule', () => {
-  let tableGridModule: TableGridModule;
+  let tableGridModule: AngularTableGridModule;
 
   beforeEach(() => {
-    tableGridModule = new TableGridModule();
+    tableGridModule = new AngularTableGridModule();
   });
 
   it('should create an instance', () => {

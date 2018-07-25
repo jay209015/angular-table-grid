@@ -2,7 +2,7 @@
  * Public API Surface of table-grid
  */
 
-export * from './lib/table-grid.module';
+export * from './lib/angular-table-grid.module';
 export {TableGridColumn} from './lib/interfaces/table-grid-column';
 export {TableGridDetails} from './lib/interfaces/table-grid-details';
 export {TableGridFilters} from './lib/interfaces/table-grid-filters';
