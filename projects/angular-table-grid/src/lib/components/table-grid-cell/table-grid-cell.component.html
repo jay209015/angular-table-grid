@@ -1,0 +1,5 @@
+<span *ngIf="gridOptions.enableDetails && isFirst && !detailRow">
+  <i *ngIf="!gridRow.showDetails">[+] </i>
+  <i *ngIf="gridRow.showDetails">[-] </i>
+</span>
+<span *ngIf="!detailRow">{{gridCell}}</span>
