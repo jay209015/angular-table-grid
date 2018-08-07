@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {TableGridDetails} from 'angular-table-grid';
-import {TableGridOptions} from 'angular-table-grid';
+import {TableGridDetails} from '../../../projects/angular-table-grid/src/lib/interfaces/table-grid-details';
+import {TableGridOptions} from '../../../projects/angular-table-grid/src/lib/interfaces/table-grid-options';
 
 @Component({
   selector: 'app-test',

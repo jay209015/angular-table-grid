@@ -7,13 +7,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 `npm install angular-table-grid`
 
 ``` typescript
-import {TableGridModule} from 'table-grid';
+import {AngularTableGridModule} from 'angular-table-grid';
 
 @NgModule({
   declarations: [...],
   imports: [
     ...
-    TableGridModule,
+    AngularTableGridModule,
     ...
   ],
   providers: [],

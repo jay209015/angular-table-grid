@@ -1,9 +1,10 @@
 import {Component} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {TableGridOptions} from 'angular-table-grid';
-import {TableGridRowDataResponse} from 'angular-table-grid';
-import {TableGridRowDataRequest} from 'angular-table-grid';
+import {TableGridOptions} from '../../projects/angular-table-grid/src/lib/interfaces/table-grid-options';
+import {TableGridRowDataResponse} from '../../projects/angular-table-grid/src/lib/interfaces/table-grid-row-data-response';
+import {TableGridRowDataRequest} from '../../projects/angular-table-grid/src/lib/interfaces/table-grid-row-data-request';
 import {map} from 'rxjs/internal/operators';
+import {createElementCssSelector} from '@angular/compiler';
 
 @Component({
   selector: 'app-root',
@@ -44,6 +45,9 @@ export class AppComponent {
             };
           })
         );
+      },
+      getRowStyles: (node) => {
+        return {'border-left': '2px solid red'};
       },
       perPage: 5
     };

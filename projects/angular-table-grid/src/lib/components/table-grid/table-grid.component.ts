@@ -13,7 +13,8 @@ export class TableGridComponent implements OnInit {
   public rowData: any[] = [];
   public rowDataRequest: TableGridRowDataRequest;
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit() {
     this.rowDataRequest = <TableGridRowDataRequest>{
@@ -26,6 +27,12 @@ export class TableGridComponent implements OnInit {
       sorting: [],
       params: new HttpParams()
     };
+
+    if (typeof this.gridOptions.getRowStyles === 'undefined') {
+      this.gridOptions.getRowStyles = (node) => {
+        return {};
+      };
+    }
 
     if (typeof this.gridOptions.perPage !== 'undefined') {
       this.rowDataRequest.pagination.perPage = this.gridOptions.perPage;

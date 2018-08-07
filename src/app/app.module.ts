@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { TestComponent } from './test/test.component';
 import {HttpClientModule} from '@angular/common/http';
-import {AngularTableGridModule} from 'angular-table-grid';
+import {AngularTableGridModule} from '../../projects/angular-table-grid/src/lib/angular-table-grid.module';
 
 @NgModule({
   declarations: [
