@@ -1,6 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="container">
   <h1>Custom Table Grid Module <button class="btn btn-lg" (click)="refresh()">Refresh</button> </h1>
+  <button class="btn btn-lg" (click)="getSelectedRows()">Log Selected Rows</button>
   <input class="form-control" type="text" (change)="search()" [(ngModel)]="query" />
   <div class="row">
     <div class="col-md-12">

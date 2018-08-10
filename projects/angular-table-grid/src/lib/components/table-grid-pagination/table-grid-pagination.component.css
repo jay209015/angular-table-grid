@@ -1,0 +1,22 @@
+.page-link {
+   min-width: 45px;
+}
+.page-item.input {
+    float: right;
+}
+
+input.page-link {
+    width: 55px;
+}
+
+select.page-link {
+    height: 38px;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}

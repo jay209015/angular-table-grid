@@ -1,4 +1,4 @@
-<span *ngIf="gridOptions.enableDetails && isFirst && !detailRow">
+<span *ngIf="gridOptions.enableDetails && isFirst && !detailRow" (click)="toggleDetails($event)">
   <i *ngIf="!gridRow.showDetails">[+] </i>
   <i *ngIf="gridRow.showDetails">[-] </i>
 </span>

@@ -1,5 +1,8 @@
 <nav aria-label="Table Grid Pagination" *ngIf="_totalRows">
-  <ul class="pagination">
+  <ul class="pagination justify-content-left left">
+    <li class="page-item" [class.disabled]="isFirstPage()">
+      <a class="page-link" (click)="firstPage()"><<</a>
+    </li>
     <li class="page-item" [class.disabled]="isFirstPage()">
       <a class="page-link" (click)="prevPage()">Previous</a>
     </li>
@@ -8,6 +11,23 @@
     </li>
     <li class="page-item" [class.disabled]="isLastPage()">
       <a class="page-link" (click)="nextPage()">Next</a>
+    </li>
+    <li class="page-item" [class.disabled]="isLastPage()">
+      <a class="page-link" (click)="lastPage()">>></a>
+    </li>
+
+  </ul>
+  <ul class="pagination justify-content-right right">
+    <li class="page-item">
+      <select class="page-link" [(ngModel)]="perPage" (change)="getPages(); firstPage()">
+        <option>5</option>
+        <option>20</option>
+        <option>50</option>
+        <option>100</option>
+      </select>
+    </li>
+    <li class="page-item input">
+      <input class="page-link" type="text" (change)="setPage(page)" [(ngModel)]="page" [value]="page" />
     </li>
   </ul>
 </nav>

@@ -1,40 +1,43 @@
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th *ngFor="let column of gridOptions.columns">{{column.headerTitle}}</th>
-  </tr>
-  </thead>
-  <tbody>
-  <ng-template ngFor let-gridRow [ngForOf]="rowData">
-    <tr (click)="gridRow.showDetails = !gridRow.showDetails">
-      <td *ngFor="let column of gridOptions.columns; let first = first">
-        <lib-table-grid-cell
-          [isFirst]="first"
-          [gridOptions]="gridOptions"
-          [gridRow]="gridRow"
-          [gridCell]="gridRow[column.fieldName]">
+<div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th *ngFor="let column of gridOptions.columns">{{column.headerTitle}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-template ngFor let-gridRow [ngForOf]="rowData">
+            <tr (click)="selectRow(gridRow)" [class.table-primary]="isSelected(gridRow)">
+                <td *ngFor="let column of gridOptions.columns; let first = first">
+                    <lib-table-grid-cell
+                            [isFirst]="first"
+                            [gridOptions]="gridOptions"
+                            [gridRow]="gridRow"
+                            [selectable]="column.selectable"
+                            [gridCell]="getField(gridRow, column.fieldName)">
 
-        </lib-table-grid-cell>
-      </td>
-    </tr>
-    <tr *ngIf="gridOptions.enableDetails && gridRow.showDetails">
-      <td [attr.colspan]="gridOptions.columns.length">
-        <lib-table-grid-cell
-          [detailRow]="true"
-          [gridOptions]="gridOptions"
-          [gridRow]="gridRow"
-          [gridCell]="gridOptions.getDetails(gridRow)">
+                    </lib-table-grid-cell>
+                </td>
+            </tr>
+            <tr *ngIf="gridOptions.enableDetails && gridRow.showDetails">
+                <td [attr.colspan]="gridOptions.columns.length">
+                    <lib-table-grid-cell
+                            [detailRow]="true"
+                            [gridOptions]="gridOptions"
+                            [gridRow]="gridRow"
+                            [gridCell]="gridOptions.getDetails(gridRow)">
 
-        </lib-table-grid-cell>
-      </td>
-    </tr>
-  </ng-template>
-  </tbody>
-</table>
-<lib-table-grid-pagination *ngIf="gridOptions.perPage"
-  [page]="rowDataRequest.pagination.page"
-  [perPage]="gridOptions.perPage"
-  [totalRows]="rowDataRequest.pagination.totalRows"
-  (pageChanged)="setPage($event)">
+                    </lib-table-grid-cell>
+                </td>
+            </tr>
+        </ng-template>
+        </tbody>
+    </table>
+    <lib-table-grid-pagination *ngIf="gridOptions.perPage"
+                               [page]="rowDataRequest.pagination.page"
+                               [perPage]="gridOptions.perPage"
+                               [totalRows]="rowDataRequest.pagination.totalRows"
+                               (pageChanged)="setPage($event)">
 
-</lib-table-grid-pagination>
+    </lib-table-grid-pagination>
+</div>

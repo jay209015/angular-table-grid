@@ -1,20 +1,26 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
 import {TableGridOptions} from '../../interfaces/table-grid-options';
 import {TableGridRowDataRequest} from '../../interfaces/table-grid-row-data-request';
 import {HttpParams} from '@angular/common/http';
+import {PageChangedEvent} from '../table-grid-pagination/table-grid-pagination.component';
+import {Subscription} from 'rxjs';
+
 
 @Component({
     selector: 'lib-table-grid',
     templateUrl: './table-grid.component.html',
-    styleUrls: ['./table-grid.component.css']
+    styleUrls: ['./table-grid.component.scss']
 })
 export class TableGridComponent implements OnInit {
     @Input() gridOptions: TableGridOptions;
     @Output() gridReady = new EventEmitter<TableGridComponent>();
     public rowData: any[] = [];
     public rowDataRequest: TableGridRowDataRequest;
+    public selectedRows: any[] = [];
+    private multiSelect = false;
 
-  constructor() {}
+    constructor() {
+    }
 
     ngOnInit() {
         this.rowDataRequest = <TableGridRowDataRequest>{
@@ -51,9 +57,11 @@ export class TableGridComponent implements OnInit {
         });
     }
 
-    public setPage(pageNum) {
-        this.rowDataRequest.pagination.page = pageNum;
+    public setPage(pageChangedEvent: PageChangedEvent) {
+        this.rowDataRequest.pagination.page = pageChangedEvent.page;
+        this.rowDataRequest.pagination.perPage = pageChangedEvent.perPage;
         this.rowDataRequest.params = this.rowDataRequest.params.set('_page', this.rowDataRequest.pagination.page.toString());
+        this.rowDataRequest.params = this.rowDataRequest.params.set('_limit', this.rowDataRequest.pagination.perPage.toString());
         this.getRowData();
     }
 
@@ -64,8 +72,51 @@ export class TableGridComponent implements OnInit {
         }
     }
 
+    @HostListener('window:keyup', ['$event'])
+    keyUpEvent(event: KeyboardEvent) {
+        if (event.key === 'Control') {
+            this.multiSelect = false;
+        }
+    }
+
+    @HostListener('window:keydown', ['$event'])
+    keyDownEvent(event: KeyboardEvent) {
+        if (event.key === 'Control') {
+            this.multiSelect = true;
+        }
+    }
+
+    public selectRow(gridRow) {
+        if (this.selectedRows.indexOf(gridRow) !== -1) {
+            const rowIndex = this.selectedRows.indexOf(gridRow);
+            this.selectedRows.splice(rowIndex, 1);
+        } else {
+            if (!this.multiSelect) {
+                this.selectedRows = [];
+            }
+            this.selectedRows.push(gridRow);
+        }
+    }
+
+    public isSelected(gridRow) {
+        return (this.selectedRows.indexOf(gridRow) !== -1);
+    }
+
+    public getSelectedRows() {
+        return this.selectedRows;
+    }
+
     public refresh() {
         this.applyFilters();
         this.getRowData();
+    }
+
+    public getField(gridRow, fieldName) {
+        const fieldParts = fieldName.split('.');
+        let value = gridRow;
+        for (let i = 0; i < fieldParts.length; i++) {
+            value = value[fieldParts[i]];
+        }
+        return value;
     }
 }

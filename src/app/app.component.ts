@@ -17,46 +17,53 @@ export class AppComponent {
     gridApi: TableGridComponent;
     query: string;
 
-  constructor(http: HttpClient) {
-    this.gridOptions = {
-      enableDetails: true,
-      getDetails: (node: any) => {
-        return (typeof node.body !== 'undefined') ? node.body : false;
-      },
-      columns: [
-        {
-          headerTitle: 'ID',
-          fieldName: 'id'
-        },
-        {
-          headerTitle: 'User ID',
-          fieldName: 'userId'
-        },
-        {
-          headerTitle: 'Title',
-          fieldName: 'title'
-        }
-      ],
-      getRowData: (rowDataRequest: TableGridRowDataRequest) => {
-        return http.get<any>('https://jsonplaceholder.typicode.com/posts', {
-          params: rowDataRequest.params
-        }).pipe(
-          map((response) => {
-            return <TableGridRowDataResponse>{
-              rows: response,
-              totalRows: 100
-            };
-          })
-        );
-      },
-      perPage: 5
-    };
-  }gridReady(gridApi: TableGridComponent) {
+    constructor(http: HttpClient) {
+        this.gridOptions = {
+            enableDetails: true,
+            getDetails: (node: any) => {
+                return (typeof node.body !== 'undefined') ? node.body : false;
+            },
+            columns: [
+                {
+                    headerTitle: 'ID',
+                    fieldName: 'id',
+                    selectable: true
+                },
+                {
+                    headerTitle: 'User ID',
+                    fieldName: 'userId'
+                },
+                {
+                    headerTitle: 'Title',
+                    fieldName: 'title'
+                }
+            ],
+            getRowData: (rowDataRequest: TableGridRowDataRequest) => {
+                return http.get<any>('https://jsonplaceholder.typicode.com/posts', {
+                    params: rowDataRequest.params
+                }).pipe(
+                    map((response) => {
+                        return <TableGridRowDataResponse>{
+                            rows: response,
+                            totalRows: 100
+                        };
+                    })
+                );
+            },
+            perPage: 5
+        };
+    }
+
+    gridReady(gridApi: TableGridComponent) {
         this.gridApi = gridApi;
     }
 
     refresh() {
         this.gridApi.refresh();
+    }
+
+    getSelectedRows() {
+        console.log(this.gridApi.getSelectedRows());
     }
 
     search() {
