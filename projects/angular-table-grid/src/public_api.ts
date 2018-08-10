@@ -11,3 +11,4 @@ export {TableGridPagination} from './lib/interfaces/table-grid-pagination';
 export {TableGridRowDataRequest} from './lib/interfaces/table-grid-row-data-request';
 export {TableGridRowDataResponse} from './lib/interfaces/table-grid-row-data-response';
 export {TableGridSorting} from './lib/interfaces/table-grid-sorting';
+export {TableGridComponent} from './lib/components/table-grid/table-grid.component';
