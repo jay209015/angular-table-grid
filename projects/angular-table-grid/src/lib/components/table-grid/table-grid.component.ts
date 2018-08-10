@@ -14,8 +14,7 @@ export class TableGridComponent implements OnInit {
     public rowData: any[] = [];
     public rowDataRequest: TableGridRowDataRequest;
 
-    constructor() {
-    }
+  constructor() {}
 
     ngOnInit() {
         this.rowDataRequest = <TableGridRowDataRequest>{
