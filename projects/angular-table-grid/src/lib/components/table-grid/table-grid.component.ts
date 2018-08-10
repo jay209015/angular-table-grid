@@ -111,7 +111,7 @@ export class TableGridComponent implements OnInit {
         this.getRowData();
     }
 
-    public getField(gridRow, fieldName) {
+    public getField(gridRow, fieldName: string) {
         const fieldParts = fieldName.split('.');
         let value = gridRow;
         for (let i = 0; i < fieldParts.length; i++) {

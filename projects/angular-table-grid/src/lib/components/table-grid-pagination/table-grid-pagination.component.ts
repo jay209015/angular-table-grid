@@ -38,6 +38,9 @@ export class TableGridPaginationComponent implements OnInit {
         const difference = lastPage - ((firstPage - 1) + this.maxPages);
         if (difference < 0) {
             firstPage = firstPage + difference;
+            if (firstPage < 1) {
+                firstPage = 1;
+            }
         }
 
         for (let i = firstPage; i <= lastPage && pages.length < this.maxPages; i++) {
