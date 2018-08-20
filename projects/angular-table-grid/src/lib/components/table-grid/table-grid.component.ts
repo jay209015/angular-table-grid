@@ -115,7 +115,11 @@ export class TableGridComponent implements OnInit {
         const fieldParts = fieldName.split('.');
         let value = gridRow;
         for (let i = 0; i < fieldParts.length; i++) {
-            value = value[fieldParts[i]];
+            if (typeof value[fieldParts[i]] !== 'undefined') {
+                value = value[fieldParts[i]];
+            } else {
+                value = '';
+            }
         }
         return value;
     }
