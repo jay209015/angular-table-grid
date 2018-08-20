@@ -123,4 +123,20 @@ export class TableGridComponent implements OnInit {
         }
         return value;
     }
+
+    public getRowStyle(gridRow) {
+        if (typeof this.gridOptions.getRowStyles !== 'undefined') {
+            return this.gridOptions.getRowStyles(gridRow);
+        } else {
+            return {};
+        }
+    }
+
+    public getCellStyle(columnValue, columnDef) {
+        if (typeof this.gridOptions.getCellStyles !== 'undefined') {
+            return this.gridOptions.getCellStyles(columnValue, columnDef);
+        } else {
+            return {};
+        }
+    }
 }

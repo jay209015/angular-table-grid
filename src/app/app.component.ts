@@ -50,6 +50,14 @@ export class AppComponent {
                     })
                 );
             },
+            getCellStyles: (value, columnDef) => {
+                if (columnDef.fieldName === 'id') {
+                    const color = (value % 2 === 0) ? 'blue' : 'green';
+                    return {'border-left': '5px solid ' + color};
+                } else {
+                    return {};
+                }
+            },
             perPage: 5
         };
     }

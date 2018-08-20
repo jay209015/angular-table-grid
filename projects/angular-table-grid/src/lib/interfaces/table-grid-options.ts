@@ -14,4 +14,5 @@ export interface TableGridOptions {
   perPage?: number;
   page?: number;
   getRowStyles?: (node: object) => any;
+  getCellStyles?: (value: any, columnDef: TableGridColumn) => any;
 }

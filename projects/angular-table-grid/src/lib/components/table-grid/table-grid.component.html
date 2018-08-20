@@ -7,8 +7,8 @@
         </thead>
         <tbody>
         <ng-template ngFor let-gridRow [ngForOf]="rowData">
-            <tr (click)="selectRow(gridRow)" [class.table-primary]="isSelected(gridRow)">
-                <td *ngFor="let column of gridOptions.columns; let first = first">
+            <tr (click)="selectRow(gridRow)" [class.table-primary]="isSelected(gridRow)" [libTableGridStyle]="getRowStyle(gridRow)">
+                <td *ngFor="let column of gridOptions.columns; let first = first" [libTableGridStyle]="getCellStyle(getField(gridRow, column.fieldName), column)">
                     <lib-table-grid-cell
                             [isFirst]="first"
                             [gridOptions]="gridOptions"
