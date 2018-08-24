@@ -4,6 +4,7 @@ import {TableGridRowDataRequest} from '../../interfaces/table-grid-row-data-requ
 import {HttpParams} from '@angular/common/http';
 import {PageChangedEvent} from '../table-grid-pagination/table-grid-pagination.component';
 import {Subscription} from 'rxjs';
+import {TableGridColumn} from '../../interfaces/table-grid-column';
 
 
 @Component({
@@ -67,8 +68,29 @@ export class TableGridComponent implements OnInit {
 
     public applyFilters() {
         if (this.rowDataRequest.filters) {
-            console.log(this.rowDataRequest);
-            this.rowDataRequest.params = this.rowDataRequest.params.set('q', this.rowDataRequest.filters[0].q.toString());
+            if (typeof this.rowDataRequest.filters[0] !== 'undefined') {
+                this.rowDataRequest.params = this.rowDataRequest.params.set('q', this.rowDataRequest.filters[0].q.toString());
+            }
+        }
+    }
+
+    public applySorting() {
+        const sortArr = [];
+        const orderArr = [];
+        for (const field in this.rowDataRequest.sorting) {
+            if (this.rowDataRequest.sorting.hasOwnProperty(field)) {
+                if (this.rowDataRequest.sorting[field]) {
+                    sortArr.push(field);
+                    orderArr.push(this.rowDataRequest.sorting[field]);
+                }
+            }
+        }
+        const sortStr = sortArr.join(',');
+        const orderStr = orderArr.join(',');
+
+        if (sortStr && orderStr) {
+            this.rowDataRequest.params = this.rowDataRequest.params.set('_sort', sortStr);
+            this.rowDataRequest.params = this.rowDataRequest.params.set('_order', orderStr);
         }
     }
 
@@ -108,6 +130,7 @@ export class TableGridComponent implements OnInit {
 
     public refresh() {
         this.applyFilters();
+        this.applySorting();
         this.getRowData();
     }
 
@@ -138,5 +161,34 @@ export class TableGridComponent implements OnInit {
         } else {
             return {};
         }
+    }
+
+    public sort(event, columnDef: TableGridColumn) {
+        event.preventDefault();
+        if (this.rowDataRequest.sorting[columnDef.fieldName] === '') {
+            this.rowDataRequest.sorting[columnDef.fieldName] = 'DESC';
+        } else if (this.rowDataRequest.sorting[columnDef.fieldName] === 'ASC') {
+            this.rowDataRequest.sorting[columnDef.fieldName] = '';
+        } else {
+            this.rowDataRequest.sorting[columnDef.fieldName] = 'ASC';
+        }
+        this.refresh();
+        console.log(this.rowDataRequest.sorting);
+    }
+
+    public getColumnSorting(columnDef: TableGridColumn) {
+        if (typeof this.rowDataRequest.sorting[columnDef.fieldName] === 'undefined') {
+            this.rowDataRequest.sorting[columnDef.fieldName] = '';
+        }
+
+        return this.rowDataRequest.sorting[columnDef.fieldName];
+    }
+
+    public getColumnSortingIcon(columnDef: TableGridColumn) {
+        const direction = this.getColumnSorting(columnDef);
+        if (direction) {
+            return (direction === 'DESC') ? '&#9660;' : '&#9650;';
+        }
+        return '&#x21D5;';
     }
 }

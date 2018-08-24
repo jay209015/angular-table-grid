@@ -2,7 +2,10 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th *ngFor="let column of gridOptions.columns">{{column.headerTitle}}</th>
+            <th *ngFor="let column of gridOptions.columns">
+                <span>{{column.headerTitle}}</span>
+                <i *ngIf="column.sortable" class="icon" (click)="sort($event, column)" [innerHTML]="getColumnSortingIcon(column)"></i>
+            </th>
         </tr>
         </thead>
         <tbody>

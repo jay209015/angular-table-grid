@@ -27,7 +27,7 @@ export class AppComponent {
                 {
                     headerTitle: 'ID',
                     fieldName: 'id',
-                    selectable: true
+                    sortable: true
                 },
                 {
                     headerTitle: 'User ID',

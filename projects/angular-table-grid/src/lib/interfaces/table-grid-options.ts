@@ -5,14 +5,14 @@ import {Observable} from 'rxjs';
 import {TableGridRowDataRequest} from './table-grid-row-data-request';
 
 export interface TableGridOptions {
-  columns: TableGridColumn[];
-  getRowData: (rowDataRequest: TableGridRowDataRequest) => Observable<any>;
-  enableDetails?: boolean;
-  getDetails?: (node: object) => any ;
-  detailComponent?: Type<TableGridDetails>;
-  totalRows?: number;
-  perPage?: number;
-  page?: number;
-  getRowStyles?: (node: object) => any;
-  getCellStyles?: (value: any, columnDef: TableGridColumn) => any;
+    columns: TableGridColumn[];
+    getRowData: (rowDataRequest: TableGridRowDataRequest) => Observable<any>;
+    enableDetails?: boolean;
+    getDetails?: (node: object) => any;
+    detailComponent?: Type<TableGridDetails>;
+    totalRows?: number;
+    perPage?: number;
+    page?: number;
+    getRowStyles?: (node: object) => any;
+    getCellStyles?: (value: any, columnDef: TableGridColumn) => any;
 }
