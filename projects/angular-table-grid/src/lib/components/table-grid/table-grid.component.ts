@@ -19,6 +19,7 @@ export class TableGridComponent implements OnInit {
     public rowDataRequest: TableGridRowDataRequest;
     public selectedRows: any[] = [];
     private multiSelect = false;
+    showSettings = false;
 
     constructor() {
     }
@@ -34,6 +35,12 @@ export class TableGridComponent implements OnInit {
             sorting: [],
             params: new HttpParams()
         };
+
+        for (let i = 0; i < this.gridOptions.columns.length; i++) {
+            if (typeof this.gridOptions.columns[i].visible === 'undefined') {
+                this.gridOptions.columns[i].visible = true;
+            }
+        }
 
         if (typeof this.gridOptions.perPage !== 'undefined') {
             this.rowDataRequest.pagination.perPage = this.gridOptions.perPage;
@@ -190,5 +197,9 @@ export class TableGridComponent implements OnInit {
             return (direction === 'DESC') ? '&#9660;' : '&#9650;';
         }
         return '&#x21D5;';
+    }
+
+    public toggleSettings() {
+        this.showSettings = !this.showSettings;
     }
 }

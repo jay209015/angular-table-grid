@@ -1,26 +1,51 @@
 <div>
+    <div class="table-options" *ngIf="showSettings">
+        <div class="card">
+            <div class="card-title">
+                <span><b>Settings</b></span>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let column of gridOptions.columns">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" [checked]="column.visible" [(ngModel)]="column.visible"/>
+                                {{column.headerTitle}}
+                            </label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <table class="table table-striped">
         <thead>
         <tr>
-            <th *ngFor="let column of gridOptions.columns">
-                <span>{{column.headerTitle}}</span>
-                <i *ngIf="column.sortable" class="icon" (click)="sort($event, column)" [innerHTML]="getColumnSortingIcon(column)"></i>
-            </th>
+            <ng-template ngFor let-column [ngForOf]=" gridOptions.columns">
+                <th *ngIf="column.visible">
+                    <span>{{column.headerTitle}}</span>
+                    <i *ngIf="column.sortable" class="icon" (click)="sort($event, column)"
+                       [innerHTML]="getColumnSortingIcon(column)"></i>
+                </th>
+            </ng-template>
         </tr>
         </thead>
         <tbody>
         <ng-template ngFor let-gridRow [ngForOf]="rowData">
-            <tr (click)="selectRow(gridRow)" [class.table-primary]="isSelected(gridRow)" [libTableGridStyle]="getRowStyle(gridRow)">
-                <td *ngFor="let column of gridOptions.columns; let first = first" [libTableGridStyle]="getCellStyle(getField(gridRow, column.fieldName), column)">
-                    <lib-table-grid-cell
-                            [isFirst]="first"
-                            [gridOptions]="gridOptions"
-                            [gridRow]="gridRow"
-                            [selectable]="column.selectable"
-                            [gridCell]="getField(gridRow, column.fieldName)">
+            <tr (click)="selectRow(gridRow)" [class.table-primary]="isSelected(gridRow)"
+                [libTableGridStyle]="getRowStyle(gridRow)">
+                <ng-template ngFor let-column let-first="first" [ngForOf]=" gridOptions.columns">
+                    <td *ngIf="column.visible" [libTableGridStyle]="getCellStyle(getField(gridRow, column.fieldName), column)">
+                        <lib-table-grid-cell
+                                [isFirst]="first"
+                                [gridOptions]="gridOptions"
+                                [gridRow]="gridRow"
+                                [selectable]="column.selectable"
+                                [gridCell]="getField(gridRow, column.fieldName)">
 
-                    </lib-table-grid-cell>
-                </td>
+                        </lib-table-grid-cell>
+                    </td>
+                </ng-template>
             </tr>
             <tr *ngIf="gridOptions.enableDetails && gridRow.showDetails">
                 <td [attr.colspan]="gridOptions.columns.length">

@@ -1,3 +1,22 @@
 tr.selected {
     background-color: blue !important;
 }
+
+.table-options {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 50px 10px 70px 10px;
+    height: 100%;
+    z-index: 100;
+    .card {
+        .card-title {
+            padding: 5px;
+            border-bottom: 1px solid gray;
+        }
+        height: 100%;
+        width: 250px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+}
