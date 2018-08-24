@@ -1,10 +1,13 @@
 tr.selected {
     background-color: blue !important;
 }
-
+.angular-table-grid-wrapper {
+    position: relative;
+    height: 100%;
+}
 .table-options {
     position: absolute;
-    right: 0;
+    right: -10px;
     top: 0;
     padding: 50px 10px 70px 10px;
     height: 100%;
