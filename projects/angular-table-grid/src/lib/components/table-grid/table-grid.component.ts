@@ -136,6 +136,7 @@ export class TableGridComponent implements OnInit {
     }
 
     public refresh() {
+        this.selectedRows = [];
         this.applyFilters();
         this.applySorting();
         this.getRowData();
