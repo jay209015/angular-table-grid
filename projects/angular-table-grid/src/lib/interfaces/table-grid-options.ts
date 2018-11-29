@@ -15,4 +15,5 @@ export interface TableGridOptions {
     page?: number;
     getRowStyles?: (node: object) => any;
     getCellStyles?: (value: any, columnDef: TableGridColumn) => any;
+    multiSelectOn?: boolean;
 }

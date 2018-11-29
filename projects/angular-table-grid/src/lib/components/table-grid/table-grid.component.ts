@@ -1,8 +1,8 @@
-import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, HostListener, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {TableGridOptions} from '../../interfaces/table-grid-options';
 import {TableGridRowDataRequest} from '../../interfaces/table-grid-row-data-request';
 import {HttpParams} from '@angular/common/http';
-import {PageChangedEvent} from '../table-grid-pagination/table-grid-pagination.component';
+import {PageChangedEvent, TableGridPaginationComponent} from '../table-grid-pagination/table-grid-pagination.component';
 import {Subscription} from 'rxjs';
 import {TableGridColumn} from '../../interfaces/table-grid-column';
 
@@ -13,12 +13,14 @@ import {TableGridColumn} from '../../interfaces/table-grid-column';
     styleUrls: ['./table-grid.component.scss']
 })
 export class TableGridComponent implements OnInit {
+    @ViewChild(TableGridPaginationComponent) pagination;
     @Input() gridOptions: TableGridOptions;
     @Output() gridReady = new EventEmitter<TableGridComponent>();
     public rowData: any[] = [];
     public rowDataRequest: TableGridRowDataRequest;
     public selectedRows: any[] = [];
     private multiSelect = false;
+    private multiSelectOverride = false;
     showSettings = false;
 
     constructor() {
@@ -47,6 +49,12 @@ export class TableGridComponent implements OnInit {
             this.rowDataRequest.params = this.rowDataRequest.params.set('_page', this.rowDataRequest.pagination.page.toString());
             this.rowDataRequest.params = this.rowDataRequest.params.set('_limit', this.rowDataRequest.pagination.perPage.toString());
         }
+
+        if (typeof this.gridOptions.multiSelectOn !== 'undefined') {
+            this.multiSelectOverride = (this.gridOptions.multiSelectOn === true);
+            this.multiSelect = this.multiSelectOverride;
+        }
+
         this.getRowData();
         this.gridReady.emit(this);
     }
@@ -63,6 +71,10 @@ export class TableGridComponent implements OnInit {
             this.rowData = rowData.rows;
             this.rowDataRequest.pagination.totalRows = rowData.totalRows;
         });
+    }
+
+    public firstPage() {
+        this.pagination.setPage(1);
     }
 
     public setPage(pageChangedEvent: PageChangedEvent) {
@@ -103,7 +115,7 @@ export class TableGridComponent implements OnInit {
 
     @HostListener('window:keyup', ['$event'])
     keyUpEvent(event: KeyboardEvent) {
-        if (event.key === 'Control') {
+        if (event.key === 'Control' && !this.multiSelectOverride) {
             this.multiSelect = false;
         }
     }
