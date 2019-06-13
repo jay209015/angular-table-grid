@@ -41,8 +41,8 @@
                                 [gridOptions]="gridOptions"
                                 [gridRow]="gridRow"
                                 [selectable]="column.selectable"
+                                [gridColumn]="column"
                                 [gridCell]="getField(gridRow, column.fieldName)">
-
                         </lib-table-grid-cell>
                     </td>
                 </ng-template>
@@ -54,7 +54,6 @@
                             [gridOptions]="gridOptions"
                             [gridRow]="gridRow"
                             [gridCell]="gridOptions.getDetails(gridRow)">
-
                     </lib-table-grid-cell>
                 </td>
             </tr>

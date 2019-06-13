@@ -7,6 +7,7 @@ import {TableGridDetailsComponent} from './components/table-grid-details/table-g
 import {TableGridPaginationComponent} from './components/table-grid-pagination/table-grid-pagination.component';
 import {FormsModule} from '@angular/forms';
 import { TableGridStyleDirective } from './directives/table-grid-style.directive';
+import { TableGridCustomCellExampleComponent } from './components/table-grid-custom-cell-example/table-grid-custom-cell-example.component';
 
 @NgModule({
     imports: [
@@ -19,14 +20,15 @@ import { TableGridStyleDirective } from './directives/table-grid-style.directive
         TableGridCellComponent,
         TableGridDetailsComponent,
         TableGridPaginationComponent,
-        TableGridStyleDirective
+        TableGridStyleDirective,
+        TableGridCustomCellExampleComponent
     ],
     exports: [
         TableGridComponent,
         TableGridRowComponent,
         TableGridCellComponent
     ],
-    entryComponents: [TableGridDetailsComponent]
+    entryComponents: [TableGridDetailsComponent, TableGridCustomCellExampleComponent]
 })
 export class AngularTableGridModule {
 }

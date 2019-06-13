@@ -6,6 +6,7 @@ import {TableGridRowDataRequest} from '../../projects/angular-table-grid/src/lib
 import {map} from 'rxjs/internal/operators';
 import {TableGridComponent} from 'angular-table-grid';
 import {TableGridFilters} from '../../projects/angular-table-grid/src/public_api';
+import {TableGridCustomCellExampleComponent} from '../../projects/angular-table-grid/src/lib/components/table-grid-custom-cell-example/table-grid-custom-cell-example.component';
 
 @Component({
     selector: 'app-root',
@@ -31,7 +32,8 @@ export class AppComponent {
                 },
                 {
                     headerTitle: 'User ID',
-                    fieldName: 'userId'
+                    fieldName: 'userId',
+                    component: TableGridCustomCellExampleComponent
                 },
                 {
                     headerTitle: 'Title',

@@ -2,4 +2,4 @@
   <i *ngIf="!gridRow.showDetails">[+] </i>
   <i *ngIf="gridRow.showDetails">[-] </i>
 </span>
-<span *ngIf="!detailRow">{{gridCell}}</span>
+<span *ngIf="!detailRow && !gridColumn.component">{{gridCell}}</span>
