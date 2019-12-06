@@ -160,12 +160,9 @@ export class TableGridComponent implements OnInit {
 
     public getField(gridRow, fieldName: string, fieldFn: any) {
         let value = '';
-        console.log(typeof fieldFn);
         if (typeof fieldFn !== 'undefined' && typeof fieldFn === 'function') {
             value = fieldFn(gridRow);
         } else {
-            console.log('here');
-            console.log(fieldName);
             const fieldParts = fieldName.split('.');
             value = gridRow;
             for (let i = 0; i < fieldParts.length; i++) {
@@ -227,5 +224,9 @@ export class TableGridComponent implements OnInit {
 
     public toggleSettings() {
         this.showSettings = !this.showSettings;
+    }
+
+    trackByFn(index, item) {
+        return index;
     }
 }
