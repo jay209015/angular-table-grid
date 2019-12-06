@@ -16,6 +16,8 @@ export class TableGridComponent implements OnInit {
     @ViewChild(TableGridPaginationComponent) pagination;
     @Input() gridOptions: TableGridOptions;
     @Output() gridReady = new EventEmitter<TableGridComponent>();
+    @Output() select = new EventEmitter<any>();
+    @Output() deselect = new EventEmitter<any>();
     public rowData: any[] = [];
     public rowDataRequest: TableGridRowDataRequest;
     public selectedRows: any[] = [];
@@ -131,11 +133,13 @@ export class TableGridComponent implements OnInit {
         if (this.selectedRows.indexOf(gridRow) !== -1) {
             const rowIndex = this.selectedRows.indexOf(gridRow);
             this.selectedRows.splice(rowIndex, 1);
+            this.deselect.emit(gridRow);
         } else {
             if (!this.multiSelect) {
                 this.selectedRows = [];
             }
             this.selectedRows.push(gridRow);
+            this.select.emit(gridRow);
         }
     }
 
@@ -154,16 +158,25 @@ export class TableGridComponent implements OnInit {
         this.getRowData();
     }
 
-    public getField(gridRow, fieldName: string) {
-        const fieldParts = fieldName.split('.');
-        let value = gridRow;
-        for (let i = 0; i < fieldParts.length; i++) {
-            if (typeof value[fieldParts[i]] !== 'undefined' && value[fieldParts[i]] !== null) {
-                value = value[fieldParts[i]];
-            } else {
-                value = '';
+    public getField(gridRow, fieldName: string, fieldFn: any) {
+        let value = '';
+        console.log(typeof fieldFn);
+        if (typeof fieldFn !== 'undefined' && typeof fieldFn === 'function') {
+            value = fieldFn(gridRow);
+        } else {
+            console.log('here');
+            console.log(fieldName);
+            const fieldParts = fieldName.split('.');
+            value = gridRow;
+            for (let i = 0; i < fieldParts.length; i++) {
+                if (typeof value[fieldParts[i]] !== 'undefined' && value[fieldParts[i]] !== null) {
+                    value = value[fieldParts[i]];
+                } else {
+                    value = '';
+                }
             }
         }
+
         return value;
     }
 

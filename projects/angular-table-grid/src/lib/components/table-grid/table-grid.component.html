@@ -35,14 +35,14 @@
             <tr (click)="selectRow(gridRow)" [class.table-primary]="isSelected(gridRow)"
                 [libTableGridStyle]="getRowStyle(gridRow)">
                 <ng-template ngFor let-column let-first="first" [ngForOf]=" gridOptions.columns">
-                    <td *ngIf="column.visible" [libTableGridStyle]="getCellStyle(getField(gridRow, column.fieldName), column)">
+                    <td *ngIf="column.visible" [libTableGridStyle]="getCellStyle(getField(gridRow, column.fieldName, column.fieldFn), column)">
                         <lib-table-grid-cell
                                 [isFirst]="first"
                                 [gridOptions]="gridOptions"
                                 [gridRow]="gridRow"
                                 [selectable]="column.selectable"
                                 [gridColumn]="column"
-                                [gridCell]="getField(gridRow, column.fieldName)">
+                                [gridCell]="getField(gridRow, column.fieldName, column.fieldFn)">
                         </lib-table-grid-cell>
                     </td>
                 </ng-template>

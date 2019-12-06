@@ -38,6 +38,12 @@ export class AppComponent {
                 {
                     headerTitle: 'Title',
                     fieldName: 'title'
+                },
+                {
+                    headerTitle: 'Dynamic',
+                    fieldFn: (gridRow: any) => {
+                        return 'Dynamic ' + gridRow.id;
+                    }
                 }
             ],
             getRowData: (rowDataRequest: TableGridRowDataRequest) => {
