@@ -80,6 +80,7 @@ export class TableGridComponent implements OnInit {
     }
 
     public setPage(pageChangedEvent: PageChangedEvent) {
+        this.selectedRows = [];
         this.rowDataRequest.pagination.page = pageChangedEvent.page;
         this.rowDataRequest.pagination.perPage = pageChangedEvent.perPage;
         this.rowDataRequest.params = this.rowDataRequest.params.set('_page', this.rowDataRequest.pagination.page.toString());
