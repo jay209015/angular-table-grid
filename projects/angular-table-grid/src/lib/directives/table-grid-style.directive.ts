@@ -1,4 +1,4 @@
-import {Directive, ElementRef, Input, Renderer} from '@angular/core';
+import {Directive, ElementRef, Input, Renderer2} from '@angular/core';
 
 @Directive({
     selector: '[libTableGridStyle]'
@@ -6,7 +6,7 @@ import {Directive, ElementRef, Input, Renderer} from '@angular/core';
 export class TableGridStyleDirective {
 
     constructor(
-        private renderer: Renderer,
+        private renderer: Renderer2,
         private el: ElementRef
     ) {
     }
@@ -16,7 +16,7 @@ export class TableGridStyleDirective {
         if (styles) {
             for (const style in styles) {
                 if (styles.hasOwnProperty(style)) {
-                    this.renderer.setElementStyle(this.el.nativeElement, style, styles[style]);
+                    this.renderer.setStyle(this.el.nativeElement, style, styles[style]);
                 }
             }
         }

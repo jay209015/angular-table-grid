@@ -1,12 +1,12 @@
 import {Component} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {TableGridOptions} from '../../projects/angular-table-grid/src/lib/interfaces/table-grid-options';
 import {TableGridRowDataResponse} from '../../projects/angular-table-grid/src/lib/interfaces/table-grid-row-data-response';
 import {TableGridRowDataRequest} from '../../projects/angular-table-grid/src/lib/interfaces/table-grid-row-data-request';
-import {map} from 'rxjs/internal/operators';
 import {TableGridComponent} from 'angular-table-grid';
 import {TableGridFilters} from '../../projects/angular-table-grid/src/public_api';
 import {TableGridCustomCellExampleComponent} from '../../projects/angular-table-grid/src/lib/components/table-grid-custom-cell-example/table-grid-custom-cell-example.component';
+import {HttpClient} from '@angular/common/http';
+import {map} from 'rxjs/operators';
 
 @Component({
     selector: 'app-root',

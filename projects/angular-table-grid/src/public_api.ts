@@ -12,3 +12,5 @@ export {TableGridRowDataRequest} from './lib/interfaces/table-grid-row-data-requ
 export {TableGridRowDataResponse} from './lib/interfaces/table-grid-row-data-response';
 export {TableGridSorting} from './lib/interfaces/table-grid-sorting';
 export {TableGridComponent} from './lib/components/table-grid/table-grid.component';
+export {TableGridRowComponent} from './lib/components/table-grid-row/table-grid-row.component';
+export {TableGridCellComponent} from './lib/components/table-grid-cell/table-grid-cell.component';
